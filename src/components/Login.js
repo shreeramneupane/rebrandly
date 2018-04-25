@@ -47,19 +47,39 @@ class Login extends Component {
               type="email"
               fullWidth={true}
               floatingLabelText="Email Address"
+              value={this.state.email}
+              onChange={ (e) => this.onChangeEmail(e) }
             />
             <TextField
               type="password"
               fullWidth={true}
               floatingLabelText="API Key"
+              value={this.state.password}
+              onChange={ (e) => this.onChangePassword(e) }
             />
           </CardText>
           <CardActions style={this.floatActionButtonRight}>
-            <RaisedButton label="Submit" primary={true} />
+            <RaisedButton label="Submit" primary={true} onClick={ () => this.submitForm() }/>
           </CardActions>
         </Card>
       </div>
     )
+  }
+
+  onChangeEmail(e) {
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+  onChangePassword(e) {
+    this.setState({
+      password: e.target.value
+    })
+  }
+
+  submitForm() {
+    
   }
 }
 
