@@ -4,15 +4,13 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // Components
-import Header from './components/Header';
-import Body from './components/Body';
+import Login from './components/Login'
 
 class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <Header />
-        <Body />
+        <Login />
       </MuiThemeProvider>
     );
   }
