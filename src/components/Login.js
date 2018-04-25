@@ -7,6 +7,9 @@ import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
+// Service
+import RebrandlyApi from '../services/rebrandlyApi';
+
 class Login extends Component {
   alignCenter = {
     height: "100vh",          
@@ -28,7 +31,7 @@ class Login extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      apikey: ''
     }
   }
 
@@ -54,8 +57,8 @@ class Login extends Component {
               type="password"
               fullWidth={true}
               floatingLabelText="API Key"
-              value={this.state.password}
-              onChange={ (e) => this.onChangePassword(e) }
+              value={this.state.apikey}
+              onChange={ (e) => this.onChangeApikey(e) }
             />
           </CardText>
           <CardActions style={this.floatActionButtonRight}>
@@ -72,14 +75,22 @@ class Login extends Component {
     })
   }
 
-  onChangePassword(e) {
+  onChangeApikey(e) {
     this.setState({
-      password: e.target.value
+      apikey: e.target.value
     })
   }
 
   submitForm() {
-    
+    RebrandlyApi.get('/account', {headers: {apikey: this.state.apikey}})
+    .then((account) => {
+      if(account.email === this.state.email) {
+        console.log('user login successfully')
+      }
+      else {
+        alert('Credentail mis match')
+      }
+    })
   }
 }
 
