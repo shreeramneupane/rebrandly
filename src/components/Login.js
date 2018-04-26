@@ -86,6 +86,7 @@ class Login extends Component {
     .then(account => {
       if(account.email === this.state.email) {
         sessionStorage.setItem('apikey', this.state.apikey)
+        sessionStorage.setItem('email', this.state.email)
         this.props.history.push('/board')
       }
       else {
