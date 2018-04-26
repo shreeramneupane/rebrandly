@@ -11,7 +11,7 @@ class RebrandlyApi {
       })
       .then(response => {
         if (!response.ok) {
-          alert(response.statusText);
+          return Promise.reject(new Error(response.statusText))
         }
         else {
           return response.json()

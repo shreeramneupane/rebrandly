@@ -18,7 +18,7 @@ class Header extends Component {
     return (
       <div>
         <AppBar 
-          title="Sagarmatha"
+          title="Rebrandly"
           onLeftIconButtonClick = {() => this.toggleSidebar()}
         />
         <Drawer 

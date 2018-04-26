@@ -82,15 +82,38 @@ class Login extends Component {
   }
 
   submitForm() {
-    RebrandlyApi.get('/account', {headers: {apikey: this.state.apikey}})
-    .then((account) => {
+    this.getAccountDetail(this.state.apikey)
+    .then(account => {
       if(account.email === this.state.email) {
-        console.log('user login successfully')
+        sessionStorage.setItem('apikey', this.state.apikey)
+        this.props.history.push('/board')
       }
       else {
         alert('Credentail mis match')
       }
     })
+    .catch(error => {
+      alert(error.message)
+    })
+  }
+
+  getAccountDetail(apikey) {
+    return RebrandlyApi.get('/account', {headers: {apikey: apikey}})
+  }
+
+  componentWillMount() {
+    const apikeySession = sessionStorage.getItem('apikey')
+    if(apikeySession) {
+      this.getAccountDetail(apikeySession)
+      .then(account => {
+        if(account) {
+          this.props.history.push('/board')
+        }
+      })
+      .catch(error => {
+        sessionStorage.removeItem('apikey')
+      })
+    }
   }
 }
 
