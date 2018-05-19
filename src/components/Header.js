@@ -36,6 +36,7 @@ class Header extends Component {
         > 
           <Link to="/board"><MenuItem primaryText="Home" /></Link>
           <Link to="/links"><MenuItem primaryText="List Link" /></Link>
+          <Link to="/links/new"><MenuItem primaryText="Create Link" /></Link>
         </Drawer>
       </div>
     )
