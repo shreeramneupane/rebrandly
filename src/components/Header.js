@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
+// Router
+import { Link } from 'react-router-dom';
+
 // Material ui Component
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
 //Component
-import AccountIcon from './AccountIcon'
+import AccountIcon from './AccountIcon';
 
 class Header extends Component {
   constructor(props) {
@@ -30,9 +33,9 @@ class Header extends Component {
         open={ this.state.sidebarOpen }
         docked={false}
         onRequestChange = {() => this.toggleSidebar()}
-        >
-          <MenuItem>Home</MenuItem>
-          <MenuItem>First</MenuItem>
+        > 
+          <Link to="/board"><MenuItem primaryText="Home" /></Link>
+          <Link to="/links"><MenuItem primaryText="List Link" /></Link>
         </Drawer>
       </div>
     )
