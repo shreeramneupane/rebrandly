@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // Components
 import AdminBoard from './components/AdminBoard'
 import LinkCreate from './components/links/LinkCreate'
+import LinkEdit from './components/links/LinkEdit'
 import LinkList from './components/links/LinkList'
 import Login from './components/Login'
 
@@ -22,7 +23,8 @@ class App extends Component {
             <Route exact path="/" render={() => (<Redirect to="/login" />)} />
             <Route path="/board" component={AdminBoard} />
             <Route exact path="/links" component={LinkList} /> 
-            <Route path="/links/new" component={LinkCreate} />
+            <Route path="/links/new" component={LinkCreate} /> 
+            <Route path="/links/:id/edit" component={LinkEdit} />
           </Switch>
         </BrowserRouter>
       </MuiThemeProvider>
