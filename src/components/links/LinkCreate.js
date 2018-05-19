@@ -9,6 +9,14 @@ import TextField from 'material-ui/TextField';
 import Header from '../Header';
 
 class LinkCreate extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      title: '',
+      destination: ''
+    }
+  }
   render() {
     return (
       <div>
@@ -22,10 +30,14 @@ class LinkCreate extends Component {
             <TextField
               style={{width: "100%"}}
               floatingLabelText="Title"
+              value={this.state.title}
+              onChange={(e) => {this.setState({title: e.target.value})}}
             /><br />
             <TextField
               style={{width: "100%"}}
               floatingLabelText="Destination URL"
+              value={this.state.destination}
+              onChange={(e) => {this.setState({destination: e.target.value})}}
             />
           </CardText>
           <CardActions>
@@ -35,6 +47,7 @@ class LinkCreate extends Component {
       </div>
     )
   }
+
 }
 
 export default LinkCreate;
