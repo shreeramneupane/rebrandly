@@ -3,10 +3,11 @@ class RebrandlyApi {
 
   static get (path, params) {
       const url = RebrandlyApi.baseUrl + path;
+      const apikey = sessionStorage.getItem("apikey") || params.headers.apikey;
 
       return fetch(url, {
         headers: {
-          apikey: params.headers.apikey
+          apikey: apikey
         }
       })
       .then(response => {
