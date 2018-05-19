@@ -8,6 +8,9 @@ import TextField from 'material-ui/TextField';
 // Component
 import Header from '../Header';
 
+// Service
+import RebrandlyApi from '../../services/rebrandlyApi';
+
 class LinkCreate extends Component {
   constructor(props) {
     super(props)
@@ -41,11 +44,26 @@ class LinkCreate extends Component {
             />
           </CardText>
           <CardActions>
-            <FlatButton label="Submit" />
+            <FlatButton label="Submit" onClick={() => this.onSubmit()}/>
           </CardActions>
         </Card>
       </div>
     )
+  }
+
+  onSubmit() {
+    const data = {
+      title: this.state.title,
+      destination: this.state.destination
+    }
+
+    RebrandlyApi.post('/links', {body: data})
+    .then(() => {
+      this.props.history.push("/links")
+    })
+    .catch(err => {
+      alert(err.message)
+    })
   }
 
 }
