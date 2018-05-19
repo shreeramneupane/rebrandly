@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 // Material Component
+import { BottomNavigationItem} from 'material-ui/BottomNavigation';
+import EditIcon from 'material-ui/svg-icons/image/edit';
+
 import {
   Table,
   TableBody,
@@ -35,6 +38,7 @@ class LinkList extends Component {
               <TableHeaderColumn>Title</TableHeaderColumn>
               <TableHeaderColumn>Destination</TableHeaderColumn>
               <TableHeaderColumn>Short URL</TableHeaderColumn>
+              <TableHeaderColumn>Action</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
@@ -46,6 +50,13 @@ class LinkList extends Component {
                 <TableRowColumn>{link.title}</TableRowColumn>
                 <TableRowColumn>{link.destination}</TableRowColumn>
                 <TableRowColumn>{link.shortUrl}</TableRowColumn>
+                <TableRowColumn>
+                <BottomNavigationItem
+                  label="Edit"
+                  icon={<EditIcon />}
+                  onClick={() => this.props.history.push(`/links/${link.id}/edit`)}
+                />
+                </TableRowColumn>
               </TableRow>
             )
           })

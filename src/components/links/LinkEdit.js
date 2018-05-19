@@ -44,6 +44,10 @@ class LinkEdit extends Component {
       </div>
     )
   }
+
+  componentWillMount() {
+    console.log(this.props.match.params.id)
+  }
 }
 
 export default LinkEdit;
