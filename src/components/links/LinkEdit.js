@@ -13,6 +13,7 @@ import RebrandlyApi from '../../services/rebrandlyApi';
 
 class LinkEdit extends Component {
   state = {
+    id: this.props.match.params.id,
     title: '',
     destination: ''
   }
@@ -49,9 +50,7 @@ class LinkEdit extends Component {
   }
 
   componentWillMount() {
-    const id = this.props.match.params.id;
-
-    RebrandlyApi.get(`/links/${id}`)
+    RebrandlyApi.get(`/links/${this.state.id}`)
     .then(link => {
       this.setState({
         title: link.title,
@@ -59,6 +58,21 @@ class LinkEdit extends Component {
       })
     })
     .catch(err => alert(err.message))
+  }
+
+  onSubmit() {
+    const data = {
+      title: this.state.title,
+      destination: this.state.destination
+    }
+
+    RebrandlyApi.post(`/links/${this.state.id}`, {body: data})
+    .then(() => {
+      this.props.history.push("/links")
+    })
+    .catch(err => {
+      alert(err.message)
+    })
   }
 }
 
