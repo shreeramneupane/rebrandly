@@ -8,6 +8,9 @@ import TextField from 'material-ui/TextField';
 // Component
 import Header from '../Header';
 
+// Service
+import RebrandlyApi from '../../services/rebrandlyApi';
+
 class LinkEdit extends Component {
   state = {
     title: '',
@@ -46,7 +49,16 @@ class LinkEdit extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props.match.params.id)
+    const id = this.props.match.params.id;
+
+    RebrandlyApi.get(`/links/${id}`)
+    .then(link => {
+      this.setState({
+        title: link.title,
+        destination: link.destination
+      })
+    })
+    .catch(err => alert(err.message))
   }
 }
 
