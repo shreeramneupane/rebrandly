@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 // Material Component
-import { BottomNavigationItem} from 'material-ui/BottomNavigation';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 import IconButton from 'material-ui/IconButton';
@@ -57,7 +56,8 @@ class LinkList extends Component {
                     onClick={() => this.props.history.push(`/links/${link.id}/edit`)} >
                     <EditIcon />
                   </IconButton>
-                  <IconButton>
+                  <IconButton
+                  onClick={() => this.deleteLink(link.id)} >
                     <DeleteIcon />
                   </IconButton>
                 </TableRowColumn>
@@ -72,6 +72,20 @@ class LinkList extends Component {
   }
 
   componentWillMount() {
+    this.listLink()
+  }
+
+  deleteLink(linkId) {
+    RebrandlyApi.delete(`/links/${linkId}`)
+    .then(response => {
+      this.listLink()
+    })
+    .catch(err => {
+      alert(err.message)
+    })
+  }
+
+  listLink() {
     RebrandlyApi.get('/links')
     .then(links => {
       this.setState({

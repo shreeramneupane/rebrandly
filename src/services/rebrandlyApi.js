@@ -3,7 +3,7 @@ class RebrandlyApi {
 
   static get (path, params) {
       const url = RebrandlyApi.baseUrl + path;
-      const apikey =  params.headers.apikey || sessionStorage.getItem("apikey");
+      const apikey = sessionStorage.getItem("apikey") || params.headers.apikey;
 
       return fetch(url, {
         headers: {
@@ -40,7 +40,28 @@ class RebrandlyApi {
         return response.json()
       }
     })
-}
+  }
+
+  static delete(path, params) {
+    const url = RebrandlyApi.baseUrl + path;
+    const apikey = sessionStorage.getItem("apikey");
+
+    return fetch(url, {
+      method: 'delete',
+      headers: {
+        apikey: apikey,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        return Promise.reject(new Error(response.statusText))
+      }
+      else {
+        return response.json()
+      }
+    })
+  }
 }
 
 export default RebrandlyApi;
