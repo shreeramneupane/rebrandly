@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 // Material Component
 import { BottomNavigationItem} from 'material-ui/BottomNavigation';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import EditIcon from 'material-ui/svg-icons/image/edit';
+import IconButton from 'material-ui/IconButton';
 
 import {
   Table,
@@ -51,11 +53,13 @@ class LinkList extends Component {
                 <TableRowColumn>{link.destination}</TableRowColumn>
                 <TableRowColumn>{link.shortUrl}</TableRowColumn>
                 <TableRowColumn>
-                <BottomNavigationItem
-                  label="Edit"
-                  icon={<EditIcon />}
-                  onClick={() => this.props.history.push(`/links/${link.id}/edit`)}
-                />
+                  <IconButton
+                    onClick={() => this.props.history.push(`/links/${link.id}/edit`)} >
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton>
+                    <DeleteIcon />
+                  </IconButton>
                 </TableRowColumn>
               </TableRow>
             )

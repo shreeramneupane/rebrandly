@@ -3,7 +3,7 @@ class RebrandlyApi {
 
   static get (path, params) {
       const url = RebrandlyApi.baseUrl + path;
-      const apikey = sessionStorage.getItem("apikey") || params.headers.apikey;
+      const apikey =  params.headers.apikey || sessionStorage.getItem("apikey");
 
       return fetch(url, {
         headers: {
@@ -22,7 +22,7 @@ class RebrandlyApi {
 
   static post (path, params) {
     const url = RebrandlyApi.baseUrl + path;
-    const apikey = sessionStorage.getItem("apikey") || params.headers.apikey;
+    const apikey = sessionStorage.getItem("apikey");
 
     return fetch(url, {
       method: 'post',
